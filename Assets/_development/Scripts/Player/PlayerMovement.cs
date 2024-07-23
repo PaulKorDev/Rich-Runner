@@ -1,13 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _playerForwardSpeed;
     [SerializeField] private float _playerSlideSpeed;
 
+    private Vector3 _clickScreenPosition;
+    private Vector3 _clickPlayerPosition;
 
+    private float _invertedScreenWidth;
+
+    private void Start()
+    {
+        _invertedScreenWidth = 1f / Screen.width;
+    }
 
     // Update is called once per frame
     void Update()
@@ -18,17 +24,28 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
         MoveForward();
+        MoveSlide();
     }
 
     private void MoveForward()
     {
-        transform.position += Vector3.forward * Time.deltaTime * _playerSpeed;
+        transform.position += Vector3.forward * Time.deltaTime * _playerForwardSpeed;
     }
-    private void SlideMove()
+    private void MoveSlide()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
+            _clickScreenPosition = Input.mousePosition;
+            _clickPlayerPosition = transform.position;
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            float xOffset = Input.mousePosition.x - _clickScreenPosition.x;
+            xOffset *= _playerSlideSpeed * _invertedScreenWidth;
 
+            Vector3 newPlayerPosition = transform.position;
+            newPlayerPosition.x = _clickPlayerPosition.x + xOffset;
+            transform.position = newPlayerPosition;
         }
     }
 }
