@@ -1,25 +1,21 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 namespace Assets.Scripts.Architecture.StateMachine
 {
     public class PlayerStatusStateMachineManager : MonoBehaviour
     {
-        private Text _mainText;
-        private StateMachine<BasePlayerStatusState> _concreteStateMachine = new StateMachine<BasePlayerStatusState>();
+        private StateMachine<BasePlayerStatusState> _playerStatusStateMachine = new StateMachine<BasePlayerStatusState>();
 
         private void Awake()
         {
-            _mainText = GetComponent<Text>();
-
             AddStates();
-            _concreteStateMachine.EnterToState<PoorStatusState>();
+            _playerStatusStateMachine.EnterToState<PoorStatusState>();
         }
 
         private void AddStates()
         {
-            _concreteStateMachine.AddState(new PoorStatusState(_concreteStateMachine));
-            _concreteStateMachine.AddState(new RichStatusState(_concreteStateMachine));
+            _playerStatusStateMachine.AddState(new PoorStatusState(_playerStatusStateMachine));
+            _playerStatusStateMachine.AddState(new RichStatusState(_playerStatusStateMachine));
         }
     }
 }
