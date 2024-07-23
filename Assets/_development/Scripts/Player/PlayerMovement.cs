@@ -8,12 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _clickScreenPosition;
     private Vector3 _clickPlayerPosition;
 
-    private float _invertedScreenWidth;
-
-    private void Start()
-    {
-        _invertedScreenWidth = 1f / Screen.width;
-    }
+    private float _invertedScreenWidth = 1f / Screen.width;
 
     // Update is called once per frame
     void Update()
@@ -40,12 +35,19 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (Input.GetMouseButton(0))
         {
-            float xOffset = Input.mousePosition.x - _clickScreenPosition.x;
-            xOffset *= _playerSlideSpeed * _invertedScreenWidth;
-
-            Vector3 newPlayerPosition = transform.position;
-            newPlayerPosition.x = _clickPlayerPosition.x + xOffset;
-            transform.position = newPlayerPosition;
+            GetOffsetX(out float xOffset);
+            MovePlayerToNewSidePosition(xOffset);
         }
+    }
+    private void GetOffsetX(out float xOffset)
+    {
+        xOffset = Input.mousePosition.x - _clickScreenPosition.x;
+        xOffset *= _playerSlideSpeed * _invertedScreenWidth;
+    }
+    private void MovePlayerToNewSidePosition(float xOffset)
+    {
+        Vector3 newPlayerPosition = transform.position;
+        newPlayerPosition.x = _clickPlayerPosition.x + xOffset;
+        transform.position = newPlayerPosition;
     }
 }
