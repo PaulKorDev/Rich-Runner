@@ -2,8 +2,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Speed movement")]
     [SerializeField] private float _playerForwardSpeed;
     [SerializeField] private float _playerSlideSpeed;
+
+    [Header("LimitMovement")]
+    [SerializeField] private float _limitWidth; //This value can be setted from chunk width or you can create movement area, so I decide set value manually because it simpler and faster)
 
     private Vector3 _clickScreenPosition;
     private Vector3 _clickPlayerPosition;
@@ -46,8 +50,12 @@ public class PlayerMovement : MonoBehaviour
     }
     private void MovePlayerToNewSidePosition(float xOffset)
     {
+        var halfOfLimitMovement = _limitWidth * 0.5f;
+
         Vector3 newPlayerPosition = transform.position;
-        newPlayerPosition.x = _clickPlayerPosition.x + xOffset;
+        var clampedPositionX = Mathf.Clamp(_clickPlayerPosition.x + xOffset, -halfOfLimitMovement, halfOfLimitMovement);
+        newPlayerPosition.x = clampedPositionX;
+
         transform.position = newPlayerPosition;
     }
 }
