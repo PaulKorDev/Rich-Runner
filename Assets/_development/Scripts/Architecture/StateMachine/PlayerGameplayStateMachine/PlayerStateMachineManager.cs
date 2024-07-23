@@ -15,9 +15,14 @@ namespace Assets.Scripts.Architecture.StateMachine.PlayerGameplayStateMachine
         private void AddStates(Animator animator)
         {
             _playerStateMachineManager.AddState(new IdleState(_playerStateMachineManager, animator));
-            _playerStateMachineManager.AddState(new WalkState(_playerStateMachineManager, GetComponent<Player>().Movement, animator));
+            _playerStateMachineManager.AddState(new WalkState(_playerStateMachineManager, GetComponent<Player>().Movement));
             _playerStateMachineManager.AddState(new WinState(_playerStateMachineManager, animator));
-            _playerStateMachineManager.AddState(new LoseState(_playerStateMachineManager, animator));
+            _playerStateMachineManager.AddState(new LoseState(_playerStateMachineManager));
+        }
+
+        private void Update()
+        {
+            _playerStateMachineManager.CurrentState.UpdateLogic();
         }
     }
 }

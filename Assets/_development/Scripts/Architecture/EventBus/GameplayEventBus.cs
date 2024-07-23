@@ -9,5 +9,7 @@ namespace Assets._development.Scripts.Architecture.EventBus
         public CustomEvent OnLevelRestarted { get; } = new CustomEvent();
         //Called when player click to screen
         public CustomEvent OnLevelStarted { get; } = new CustomEvent();
+        public CustomEvent OnPlayerWon { get; } = new CustomEvent();
+        public CustomEvent OnPlayerLost { get; } = new CustomEvent();
     }
 }

@@ -9,7 +9,6 @@ public class Bills : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Bills");
         //player balance += value
         Destroy(gameObject);
     }

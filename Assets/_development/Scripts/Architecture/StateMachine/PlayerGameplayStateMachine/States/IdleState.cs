@@ -5,8 +5,10 @@ namespace Assets.Scripts.Architecture.StateMachine.PlayerGameplayStateMachine
 {
     public sealed class IdleState : BasePlayerState
     {
-        GameplayEventBus _eventBus;
-        public IdleState(StateMachine<BasePlayerState> stateMachine, Animator animator) : base(stateMachine, animator) {
+        private GameplayEventBus _eventBus;
+        private Animator _animator;
+        public IdleState(StateMachine<BasePlayerState> stateMachine, Animator animator) : base(stateMachine) {
+            _animator = animator;
         }
 
         public override void Enter()

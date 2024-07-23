@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets._development.Scripts.Architecture.EventBus;
+using UnityEngine;
 
 namespace Assets.Scripts.Architecture.StateMachine.PlayerStatusStateMachine
 {
@@ -6,17 +7,22 @@ namespace Assets.Scripts.Architecture.StateMachine.PlayerStatusStateMachine
     {
         private StateMachine<BasePlayerStatusState> _playerStatusStateMachine = new StateMachine<BasePlayerStatusState>();
 
-        public PlayerStatusStateMachineManager()
+        public PlayerStatusStateMachineManager(Player player)
         {
-            AddStates();
-            _playerStatusStateMachine.EnterToState<PoorStatusState>();
-
+            AddStates(player.GetComponent<Animator>());
+            ServiceLocator.ServiceLocator.Get<GameplayEventBus>().OnLevelStarted.Subscribe(EnterToPoorState);
         }
 
-        private void AddStates()
+        private void AddStates(Animator animator)
         {
-            _playerStatusStateMachine.AddState(new PoorStatusState(_playerStatusStateMachine));
-            _playerStatusStateMachine.AddState(new RichStatusState(_playerStatusStateMachine));
+            _playerStatusStateMachine.AddState(new PoorStatusState(_playerStatusStateMachine, animator));
+            _playerStatusStateMachine.AddState(new RichStatusState(_playerStatusStateMachine, animator));
+        }
+
+        private void EnterToPoorState()
+        {
+            ServiceLocator.ServiceLocator.Get<GameplayEventBus>().OnLevelStarted.Unsubscribe(EnterToPoorState);
+            _playerStatusStateMachine.EnterToState<PoorStatusState>();
         }
     }
 }

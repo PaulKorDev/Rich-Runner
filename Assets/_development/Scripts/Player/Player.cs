@@ -17,8 +17,8 @@ public class Player : MonoBehaviour
     public void Init()
     {
         SetCurrentPlayerConfig();
-        StartStateMachines();
         SetMovement();
+        StartStateMachines();
     }
 
     //ResetPlayer called when level is loaded/restarted
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
 
     private void StartStateMachines()
     {
-        new PlayerStatusStateMachineManager();
+        new PlayerStatusStateMachineManager(this);
         GetComponent<PlayerStateMachineManager>().StartPlayerStateMachineManager();
     }
     private void SetMovement() => Movement = new PlayerMovement(this);
