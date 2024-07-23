@@ -1,28 +1,30 @@
+using Assets._development.Configs.ScriptableScripts;
 using UnityEngine;
 
 namespace Assets._development.Scripts.Movement
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement
     {
-        [Header("Speed movement")]
-        [SerializeField] private float _playerForwardSpeed;
-        [SerializeField] private float _playerSlideSpeed;
-
-        [Header("LimitMovement")]
-        [SerializeField] private float _limitWidth; //This value can be setted from chunk width or you can create movement area, so I decide set value manually because it simpler and faster)
-
+        private float _playerForwardSpeed;
+        private float _playerSlideSpeed;
+        private float _limitWidth; 
+        private float _invertedScreenWidth = 1f / Screen.width;
         private Vector3 _clickScreenPosition;
         private Vector3 _clickPlayerPosition;
+        private Player _player;
 
-        private float _invertedScreenWidth = 1f / Screen.width;
+        private PlayerConfig _playerConfig;
 
-        // Update is called once per frame
-        void Update()
+        public PlayerMovement(Player player)
         {
-            Move();
-        }
+            _player = player;
 
-        private void Move()
+            _playerForwardSpeed = _player.PlayerConfig.PlayerForwardSpeed;
+            _playerSlideSpeed = _player.PlayerConfig.PlayerSlideSpeed;
+            _limitWidth = _player.PlayerConfig.LimitWidth;
+    }
+
+        public void Move()
         {
             MoveForward();
             MoveSlide();
@@ -30,14 +32,14 @@ namespace Assets._development.Scripts.Movement
 
         private void MoveForward()
         {
-            transform.position += Vector3.forward * Time.deltaTime * _playerForwardSpeed;
+            _player.transform.position += Vector3.forward * Time.deltaTime * _playerForwardSpeed;
         }
         private void MoveSlide()
         {
             if (Input.GetMouseButtonDown(0))
             {
                 _clickScreenPosition = Input.mousePosition;
-                _clickPlayerPosition = transform.position;
+                _clickPlayerPosition = _player.transform.position;
             }
             else if (Input.GetMouseButton(0))
             {
@@ -54,11 +56,11 @@ namespace Assets._development.Scripts.Movement
         {
             var halfOfLimitMovement = _limitWidth * 0.5f;
 
-            Vector3 newPlayerPosition = transform.position;
+            Vector3 newPlayerPosition = _player.transform.position;
             var clampedPositionX = Mathf.Clamp(_clickPlayerPosition.x + xOffset, -halfOfLimitMovement, halfOfLimitMovement);
             newPlayerPosition.x = clampedPositionX;
 
-            transform.position = newPlayerPosition;
+            _player.transform.position = newPlayerPosition;
         }
     }
 }
