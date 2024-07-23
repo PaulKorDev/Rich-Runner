@@ -8,8 +8,7 @@ namespace Assets._development.Scripts.Architecture.StateMachine.GameStateMachine
 
         public override void Enter()
         {
-            //Reset all: player earned money, statuses, reset all pickups on scene...
-            //Enter to it state when started and restarted game
+            
         }
     }
 }

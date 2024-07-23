@@ -1,5 +1,4 @@
-﻿using Assets._development.Scripts.Architecture.ServiceLocator;
-using Assets.Scripts.Architecture.StateMachine;
+﻿using Assets.Scripts.Architecture.StateMachine;
 
 namespace Assets._development.Scripts.Architecture.StateMachine.GameStateMachine
 {

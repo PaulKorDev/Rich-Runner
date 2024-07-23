@@ -1,6 +1,4 @@
 using Assets._development.Configs.ScriptableScripts;
-using Assets.Scripts.Architecture.ServiceLocator;
-using ButchersGames;
 using UnityEngine;
 
 namespace Assets._development.Scripts.Movement

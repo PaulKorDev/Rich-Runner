@@ -2,14 +2,15 @@
 
 namespace Assets.Scripts.Architecture.StateMachine.PlayerStatusStateMachine
 {
-    public class PlayerStatusStateMachineManager : MonoBehaviour
+    public class PlayerStatusStateMachineManager
     {
         private StateMachine<BasePlayerStatusState> _playerStatusStateMachine = new StateMachine<BasePlayerStatusState>();
 
-        private void Awake()
+        public PlayerStatusStateMachineManager()
         {
             AddStates();
             _playerStatusStateMachine.EnterToState<PoorStatusState>();
+
         }
 
         private void AddStates()

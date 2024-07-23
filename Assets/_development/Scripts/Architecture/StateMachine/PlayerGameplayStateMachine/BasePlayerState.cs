@@ -1,13 +1,18 @@
-﻿namespace Assets.Scripts.Architecture.StateMachine.PlayerGameplayStateMachine
+﻿using UnityEngine;
+
+namespace Assets.Scripts.Architecture.StateMachine.PlayerGameplayStateMachine
 {
-    public abstract class BasePlayerState : IState
+    public abstract class BasePlayerState : IState, ILogicState
     {
         protected StateMachine<BasePlayerState> _stateMachine;
-        public BasePlayerState(StateMachine<BasePlayerState> stateMachine) {
+        protected Animator _animator;
+        public BasePlayerState(StateMachine<BasePlayerState> stateMachine, Animator animator) {
             _stateMachine = stateMachine;
+            _animator = animator;
         }
 
         public abstract void Enter();
 
+        public abstract void UpdateLogic();
     }
 }

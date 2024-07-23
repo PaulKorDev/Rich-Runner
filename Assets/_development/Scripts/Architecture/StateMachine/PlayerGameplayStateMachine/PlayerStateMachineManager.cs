@@ -6,18 +6,18 @@ namespace Assets.Scripts.Architecture.StateMachine.PlayerGameplayStateMachine
     {
         private StateMachine<BasePlayerState> _playerStateMachineManager = new StateMachine<BasePlayerState>();
 
-        private void Awake()
+        public void StartPlayerStateMachineManager()
         {
-            AddStates();
+            AddStates(GetComponent<Animator>());
             _playerStateMachineManager.EnterToState<IdleState>();
         }
 
-        private void AddStates()
+        private void AddStates(Animator animator)
         {
-            _playerStateMachineManager.AddState(new IdleState(_playerStateMachineManager));
-            _playerStateMachineManager.AddState(new WalkState(_playerStateMachineManager));
-            _playerStateMachineManager.AddState(new WinState(_playerStateMachineManager));
-            _playerStateMachineManager.AddState(new LoseState(_playerStateMachineManager));
+            _playerStateMachineManager.AddState(new IdleState(_playerStateMachineManager, animator));
+            _playerStateMachineManager.AddState(new WalkState(_playerStateMachineManager, GetComponent<Player>().Movement, animator));
+            _playerStateMachineManager.AddState(new WinState(_playerStateMachineManager, animator));
+            _playerStateMachineManager.AddState(new LoseState(_playerStateMachineManager, animator));
         }
     }
 }

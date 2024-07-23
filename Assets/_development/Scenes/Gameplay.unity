@@ -2344,6 +2344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneServiceLocator: {fileID: 2059907888}
+  _player: {fileID: 4587284808968795734}
 --- !u!1001 &2057091153
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2439,6 +2440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4b507b5873158448827af9afe1ad1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _levelManager: {fileID: 1885883112}
 --- !u!4 &2059907889
 Transform:
   m_ObjectHideFlags: 0
@@ -3139,7 +3141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1249314222068102734
 Transform:
   m_ObjectHideFlags: 0
@@ -3912,7 +3914,6 @@ GameObject:
   - component: {fileID: 4587284808968795729}
   - component: {fileID: 4587284808968795728}
   - component: {fileID: 4587284808968795733}
-  - component: {fileID: 4587284808968795732}
   - component: {fileID: 4587284808968795734}
   m_Layer: 0
   m_Name: Player
@@ -4455,18 +4456,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4587284808968795732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3810783701983374581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90a79ea564f58d247989c1a189abe31f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4587284808968795733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5281,7 +5270,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6759123709431150996
 Transform:
   m_ObjectHideFlags: 0
