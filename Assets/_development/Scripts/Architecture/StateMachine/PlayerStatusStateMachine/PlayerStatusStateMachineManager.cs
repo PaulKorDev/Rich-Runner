@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Architecture.StateMachine
+namespace Assets.Scripts.Architecture.StateMachine.PlayerStatusStateMachine
 {
     public class PlayerStatusStateMachineManager : MonoBehaviour
     {

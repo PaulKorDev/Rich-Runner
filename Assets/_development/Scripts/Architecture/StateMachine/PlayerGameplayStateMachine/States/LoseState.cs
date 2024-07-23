@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Architecture.StateMachine
+﻿namespace Assets.Scripts.Architecture.StateMachine.PlayerGameplayStateMachine
 {
     public sealed class LoseState : BasePlayerState
     {

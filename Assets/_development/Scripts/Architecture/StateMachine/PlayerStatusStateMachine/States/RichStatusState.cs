@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Architecture.StateMachine
+﻿namespace Assets.Scripts.Architecture.StateMachine.PlayerStatusStateMachine
 {
     public sealed class RichStatusState : BasePlayerStatusState
     {

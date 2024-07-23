@@ -1,6 +1,6 @@
 ﻿using UnityEngine.UI;
 
-namespace Assets.Scripts.Architecture.StateMachine
+namespace Assets.Scripts.Architecture.StateMachine.PlayerStatusStateMachine
 {
     public sealed class PoorStatusState : BasePlayerStatusState
     {
