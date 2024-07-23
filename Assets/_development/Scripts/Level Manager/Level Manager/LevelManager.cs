@@ -3,10 +3,11 @@ using UnityEditor;
 using UnityEngine;
 using System;
 using System.Linq;
+using Assets.Scripts.Architecture.ServiceLocator;
 
 namespace ButchersGames
 {
-    public class LevelManager : MonoBehaviour
+    public class LevelManager : MonoBehaviour, IService
     {
         #region Singletone
         private static LevelManager _default;

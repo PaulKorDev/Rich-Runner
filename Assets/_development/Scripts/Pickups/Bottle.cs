@@ -11,5 +11,6 @@ public class Bottle : MonoBehaviour
     {
         Debug.Log("Bottle");
         //player balance -= value
+        Destroy(gameObject);
     }
 }

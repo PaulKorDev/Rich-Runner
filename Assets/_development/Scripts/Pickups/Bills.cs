@@ -11,5 +11,6 @@ public class Bills : MonoBehaviour
     {
         Debug.Log("Bills");
         //player balance += value
+        Destroy(gameObject);
     }
 }
