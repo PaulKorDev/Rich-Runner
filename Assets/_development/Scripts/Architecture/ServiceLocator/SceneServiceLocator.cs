@@ -7,12 +7,14 @@ namespace Assets.Scripts.Architecture.ServiceLocator
     public class SceneServiceLocator : MonoBehaviour
     {
         [SerializeField] private LevelManager _levelManager;
+        [SerializeField] private Player _player;
         public void RegisterAllServices()
         {
             //LevelManager
             //Balance
             RegisterEventBus();
             RegisterLevelManager();
+            RegisterPlayer();
         }
 
         private void RegisterLevelManager()
@@ -22,6 +24,10 @@ namespace Assets.Scripts.Architecture.ServiceLocator
         private void RegisterEventBus()
         {
             ServiceLocator.Register(new GameplayEventBus());
+        }
+        private void RegisterPlayer()
+        {
+            ServiceLocator.Register(_player);
         }
     }
 }

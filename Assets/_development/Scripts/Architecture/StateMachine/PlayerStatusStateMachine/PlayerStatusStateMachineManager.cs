@@ -16,6 +16,7 @@ namespace Assets.Scripts.Architecture.StateMachine.PlayerStatusStateMachine
         private void AddStates(Animator animator)
         {
             _playerStatusStateMachine.AddState(new PoorStatusState(_playerStatusStateMachine, animator));
+            _playerStatusStateMachine.AddState(new CasualStatusState(_playerStatusStateMachine, animator));
             _playerStatusStateMachine.AddState(new RichStatusState(_playerStatusStateMachine, animator));
         }
 

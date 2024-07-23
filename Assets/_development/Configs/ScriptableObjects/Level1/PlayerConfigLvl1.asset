@@ -15,6 +15,6 @@ MonoBehaviour:
   PlayerForwardSpeed: 0.8
   PlayerSlideSpeed: 1
   LimitWidth: 0.9
-  MoneyForCasualMoneyLimit: 0
-  MoneyToBecomeCasual: 0
-  MoneyToBecomeRich: 0
+  StartMoney: 1
+  MoneyToBecomeCasual: 10
+  MoneyToBecomeRich: 20

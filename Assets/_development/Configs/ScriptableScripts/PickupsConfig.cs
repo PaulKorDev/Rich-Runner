@@ -9,7 +9,7 @@ namespace Assets._development.Configs.ScriptableScripts
         public int BottlesValue;
 
         [Header("Bills")]
-        public int ValueMin;
-        public int ValueMax;
+        public int BillsValueMin;
+        public int BillsValueMax;
     }
 }

@@ -3636,7 +3636,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneServiceLocator: {fileID: 2059907888}
-  _player: {fileID: 4587284808968795734}
 --- !u!1001 &2057091153
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3733,6 +3732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelManager: {fileID: 1885883112}
+  _player: {fileID: 4587284808968795734}
 --- !u!4 &2059907889
 Transform:
   m_ObjectHideFlags: 0

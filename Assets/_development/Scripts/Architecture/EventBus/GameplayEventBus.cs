@@ -11,5 +11,8 @@ namespace Assets._development.Scripts.Architecture.EventBus
         public CustomEvent OnLevelStarted { get; } = new CustomEvent();
         public CustomEvent OnPlayerWon { get; } = new CustomEvent();
         public CustomEvent OnPlayerLost { get; } = new CustomEvent();
+        public CustomEvent OnBecomeCasual { get; } = new CustomEvent();
+        public CustomEvent OnBecomeRich { get; } = new CustomEvent();
+        public CustomEvent OnBecomePoor { get; } = new CustomEvent();
     }
 }

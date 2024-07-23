@@ -1,16 +1,23 @@
+using Assets.Scripts.Architecture.ServiceLocator;
+using ButchersGames;
 using UnityEngine;
 
 public class Bottle : MonoBehaviour
 {
+    private int _value;
     void Start()
     {
-        //Set value from config
+        var levelMngr = ServiceLocator.Get<LevelManager>();
+        _value = levelMngr.Levels[levelMngr.CurrentLevelIndex].GetLevelConfig().PickupsConfig.BottlesValue;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Bottle");
-        //player balance -= value
-        Destroy(gameObject);
+        var player = other.GetComponent<Player>();
+        if (player != null)
+        {
+            player.ReduceMoney(_value);
+            Destroy(gameObject);
+        }
     }
 }
