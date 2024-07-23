@@ -1,3 +1,6 @@
+using Assets._development.Configs.ScriptableScripts;
+using Assets.Scripts.Architecture.ServiceLocator;
+using ButchersGames;
 using UnityEngine;
 
 namespace Assets._development.Scripts.Movement
@@ -12,10 +15,16 @@ namespace Assets._development.Scripts.Movement
         private Vector3 _clickPlayerPosition;
         private Player _player;
 
+        private PlayerConfig _playerConfig;
+
         public PlayerMovement(Player player)
         {
             _player = player;
-        }
+
+            _playerForwardSpeed = _player.PlayerConfig.PlayerForwardSpeed;
+            _playerSlideSpeed = _player.PlayerConfig.PlayerSlideSpeed;
+            _limitWidth = _player.PlayerConfig.LimitWidth;
+    }
 
         public void Move()
         {

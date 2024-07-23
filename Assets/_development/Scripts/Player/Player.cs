@@ -1,3 +1,4 @@
+using Assets._development.Configs.ScriptableScripts;
 using Assets._development.Scripts.Movement;
 using Assets.Scripts.Architecture.ServiceLocator;
 using ButchersGames;
@@ -8,20 +9,24 @@ public class Player : MonoBehaviour
     public int EarnedMoney { get; private set; }
     public PlayerMovement Movement {get; private set;}
 
-    private LevelManager _levelManager;
+    public PlayerConfig PlayerConfig { get; private set; }
 
 
+    //Init once called in bootstrap
     public void Init()
     {
+        var levelManager = ServiceLocator.Get<LevelManager>();
+        PlayerConfig = levelManager.Levels[levelManager.CurrentLevelIndex].GetLevelConfig().PlayerConfig; //Update when player move to next level
+        
         Movement = new PlayerMovement(this);
-        _levelManager = ServiceLocator.Get<LevelManager>();
-        //Init called when level is loaded/restarted
-        //Set _earnedMoney to 0
+        ResetPlayer();
     }
+
+    //ResetPlayer called when level is loaded/restarted
     private void ResetPlayer()
     {
-        var currentLevel = _levelManager.Levels[_levelManager.CurrentLevelIndex];
-        EarnedMoney = currentLevel.GetLevelConfig().PlayerConfig.StartMoney;
-        transform.position = currentLevel.GetPlayerSpawnPosition();
+        EarnedMoney = PlayerConfig.StartMoney;
+        //Get Current Checkpoint for spawn player
     }
+
 }
