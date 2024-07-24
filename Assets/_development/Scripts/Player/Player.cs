@@ -41,7 +41,7 @@ public class Player : MonoBehaviour, IService
 
     private void StartStateMachines()
     {
-        new PlayerStatusStateMachineManager(this);
+        GetComponent<PlayerStatusStateMachineManager>().StartPlayerStatusStateMachineManager();
         GetComponent<PlayerStateMachineManager>().StartPlayerStateMachineManager();
     }
     private void SetMovement() => Movement = new PlayerMovement(this); 

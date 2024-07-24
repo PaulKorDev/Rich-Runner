@@ -1,6 +1,7 @@
 /*
  * 
 LEFT:
+v 0. Change Idle animation
 1. Changing of model
 2. Clamp health and die
 2. Progress bar

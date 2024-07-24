@@ -5,24 +5,26 @@ namespace Assets.Scripts.Architecture.StateMachine.PlayerStatusStateMachine
 {
     public sealed class RichStatusState : BasePlayerStatusState
     {
-        private Animator _animator;
         private GameplayEventBus _eventBus;
-        public RichStatusState(StateMachine<BasePlayerStatusState> stateMachine, Animator animator) : base(stateMachine) {
-            _animator = animator;
+        private int _richModelIndex = 2;
+        private GameObject[] _models;
+        public RichStatusState(StateMachine<BasePlayerStatusState> stateMachine, Animator animator, GameObject[] statusModels) : base(stateMachine, animator)
+        {
             _eventBus = ServiceLocator.ServiceLocator.Get<GameplayEventBus>();
-            _eventBus.OnBecomeCasual.Subscribe(EnterToPoorState);
+            _models = statusModels;
+            _eventBus.OnBecomeCasual.Subscribe(EnterToCasualState);
         }
 
         public override void Enter()
         {
             Debug.Log("RichStatusState");
-
+            TurnOnModel(_richModelIndex, _models);
             _animator.SetTrigger("TrWalking");
         }
-        private void EnterToPoorState()
+        private void EnterToCasualState()
         {
-            _eventBus.OnBecomeCasual.Unsubscribe(EnterToPoorState);
-            _stateMachine.EnterToState<PoorStatusState>();
+            //_eventBus.OnBecomeCasual.Unsubscribe(EnterToCasualState);
+            _stateMachine.EnterToState<CasualStatusState>();
         }
     }
 }

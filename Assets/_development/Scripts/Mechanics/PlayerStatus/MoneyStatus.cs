@@ -22,6 +22,7 @@ namespace Assets._development.Scripts.Mechanics.PlayerStatus
             SetLimits();
         }
 
+        //Need refactor
         private void CheckStatus(int money)
         {
             Debug.Log(money);
@@ -29,11 +30,11 @@ namespace Assets._development.Scripts.Mechanics.PlayerStatus
             {
                 _eventBus.OnBecomeRich.Trigger();
                 _currentStatus = PlayerStatuses.Rich;
-            } else if (money >= _moneyToBecomeCasual && _currentStatus != PlayerStatuses.Casual)
+            } else if (money >= _moneyToBecomeCasual && money < _moneyToBecomeRich && _currentStatus != PlayerStatuses.Casual)
             {
                 _eventBus.OnBecomeCasual.Trigger();
                 _currentStatus = PlayerStatuses.Casual;
-            } else if (money < _moneyToBecomeCasual && _currentStatus != PlayerStatuses.Poor)
+            } else if (money < _moneyToBecomeCasual && _currentStatus != PlayerStatuses.Poor && _currentStatus != PlayerStatuses.Rich)
             {
                 _eventBus.OnBecomePoor.Trigger();
                 _currentStatus = PlayerStatuses.Poor;
