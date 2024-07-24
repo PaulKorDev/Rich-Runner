@@ -16,7 +16,6 @@ namespace Assets._development.Configs.ScriptableScripts
         public int StartMoney;
 
         [Header("MoneyToNextStatus")]
-        public int MoneyForCasualMoneyLimit;
         public int MoneyToBecomeCasual;
         public int MoneyToBecomeRich;
     }

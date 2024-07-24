@@ -3,20 +3,24 @@ using UnityEngine;
 
 namespace Assets.Scripts.Architecture.StateMachine.PlayerStatusStateMachine
 {
-    public class PlayerStatusStateMachineManager
+    public class PlayerStatusStateMachineManager : MonoBehaviour
     {
         private StateMachine<BasePlayerStatusState> _playerStatusStateMachine = new StateMachine<BasePlayerStatusState>();
+        [SerializeField] private GameObject[] _statusModels;
 
-        public PlayerStatusStateMachineManager(Player player)
+
+        public void StartPlayerStatusStateMachineManager()
         {
-            AddStates(player.GetComponent<Animator>());
+            var player = GetComponent<Player>();
+            AddStates(player.GetComponent<Animator>(), player);
             ServiceLocator.ServiceLocator.Get<GameplayEventBus>().OnLevelStarted.Subscribe(EnterToPoorState);
         }
 
-        private void AddStates(Animator animator)
+        private void AddStates(Animator animator, Player player)
         {
-            _playerStatusStateMachine.AddState(new PoorStatusState(_playerStatusStateMachine, animator));
-            _playerStatusStateMachine.AddState(new RichStatusState(_playerStatusStateMachine, animator));
+            _playerStatusStateMachine.AddState(new PoorStatusState(_playerStatusStateMachine, animator, _statusModels));
+            _playerStatusStateMachine.AddState(new CasualStatusState(_playerStatusStateMachine, animator, _statusModels));
+            _playerStatusStateMachine.AddState(new RichStatusState(_playerStatusStateMachine, animator, _statusModels));
         }
 
         private void EnterToPoorState()

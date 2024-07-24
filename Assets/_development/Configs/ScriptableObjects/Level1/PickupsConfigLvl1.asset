@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PickupsConfigLvl1
   m_EditorClassIdentifier: 
   BottlesValue: 20
-  ValueMin: 1
-  ValueMax: 4
+  BillsValueMin: 1
+  BillsValueMax: 4

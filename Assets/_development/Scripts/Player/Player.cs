@@ -1,14 +1,15 @@
 using Assets._development.Configs.ScriptableScripts;
 using Assets._development.Scripts.Movement;
+using Assets.Scripts.Architecture.Reactive;
 using Assets.Scripts.Architecture.ServiceLocator;
 using Assets.Scripts.Architecture.StateMachine.PlayerGameplayStateMachine;
 using Assets.Scripts.Architecture.StateMachine.PlayerStatusStateMachine;
 using ButchersGames;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IService
 {
-    public int EarnedMoney { get; private set; }
+    public ReactiveProperty<int> EarnedMoney = new(0);
     public PlayerMovement Movement {get; private set;}
     public PlayerConfig PlayerConfig { get; private set; }
 
@@ -21,10 +22,18 @@ public class Player : MonoBehaviour
         StartStateMachines();
     }
 
+    public void IncreaseMoney(int value) => EarnedMoney.Value = (value > 0) ? EarnedMoney.Value + value : throw new System.Exception("Added value must be more than 0");
+    public void ReduceMoney(int value)
+    {
+        if (value < 0)
+            throw new System.Exception("Reduced value must be more than 0");
+   
+        EarnedMoney.Value -= Mathf.Clamp(value, 0, EarnedMoney.Value); //For avoid HP less than 0
+    }
     //ResetPlayer called when level is loaded/restarted
     private void ResetPlayer()
     {
-        EarnedMoney = PlayerConfig.StartMoney;
+        EarnedMoney.Value = PlayerConfig.StartMoney;
         var levelManager = ServiceLocator.Get<LevelManager>();
         transform.position = levelManager.Levels[levelManager.CurrentLevelIndex].GetPlayerSpawnPosition();
         //Spawn player on checkpoint instead spawnpoint
@@ -38,8 +47,8 @@ public class Player : MonoBehaviour
 
     private void StartStateMachines()
     {
-        new PlayerStatusStateMachineManager(this);
+        GetComponent<PlayerStatusStateMachineManager>().StartPlayerStatusStateMachineManager();
         GetComponent<PlayerStateMachineManager>().StartPlayerStateMachineManager();
     }
-    private void SetMovement() => Movement = new PlayerMovement(this);
+    private void SetMovement() => Movement = new PlayerMovement(this); 
 }

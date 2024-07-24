@@ -1,10 +1,13 @@
 /*
  * 
-PlayerMovement
-V 1. Register LevelManager in SL
-2. Init Player in bootstrap
-3. Reset Player in LevelStart
-4. Invoke Move in Player Walk State
+LEFT:
+v 0. Change Idle animation
+v 1. Changing of model
+2. Clamp health and die
+2. Progress bar
+3. Game UI (balance and level)
+4. Switching UI
+
 
 SpawnController
 0. Add new State - CheckpointLoad

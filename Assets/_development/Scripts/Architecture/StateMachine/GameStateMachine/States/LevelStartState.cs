@@ -1,6 +1,7 @@
 ﻿using Assets._development.Scripts.Architecture.EventBus;
 using Assets.Scripts.Architecture.ServiceLocator;
 using Assets.Scripts.Architecture.StateMachine;
+using UnityEngine;
 
 namespace Assets._development.Scripts.Architecture.StateMachine.GameStateMachine.States
 {
@@ -13,6 +14,7 @@ namespace Assets._development.Scripts.Architecture.StateMachine.GameStateMachine
         //Enter to it state when started and restarted game
         public override void Enter()
         {
+            Debug.Log("In levelStarted state");
             if (_eventBus == null) 
                 _eventBus = ServiceLocator.Get<GameplayEventBus>();
 
