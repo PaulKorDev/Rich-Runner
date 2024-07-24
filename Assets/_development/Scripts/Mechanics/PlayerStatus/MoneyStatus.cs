@@ -25,7 +25,6 @@ namespace Assets._development.Scripts.Mechanics.PlayerStatus
         //Need refactor
         private void CheckStatus(int money)
         {
-            Debug.Log(money);
             if (money >= _moneyToBecomeRich && _currentStatus != PlayerStatuses.Rich)
             {
                 _eventBus.OnBecomeRich.Trigger();

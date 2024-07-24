@@ -23,7 +23,13 @@ public class Player : MonoBehaviour, IService
     }
 
     public void IncreaseMoney(int value) => EarnedMoney.Value = (value > 0) ? EarnedMoney.Value + value : throw new System.Exception("Added value must be more than 0");
-    public void ReduceMoney(int value) => EarnedMoney.Value = (value > 0) ? EarnedMoney.Value - value : throw new System.Exception("Reduced value must be more than 0");
+    public void ReduceMoney(int value)
+    {
+        if (value < 0)
+            throw new System.Exception("Reduced value must be more than 0");
+   
+        EarnedMoney.Value -= Mathf.Clamp(value, 0, EarnedMoney.Value); //For avoid HP less than 0
+    }
     //ResetPlayer called when level is loaded/restarted
     private void ResetPlayer()
     {
